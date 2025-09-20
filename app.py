@@ -63,7 +63,7 @@ add_bg_and_card("MRI Room in Modern Medical Facility.png")
 # Config
 # ----------------------------
 IMG_SIZE = 128
-CLASSES = ["glioma", "meningioma", "notumor", "pituitary"]
+CLASSES = ["Glioma", "Meningioma", "No Tumor", "Pituitary"]
 
 @st.cache_resource
 def load_models():
@@ -138,14 +138,14 @@ def generate_report(tumor_type, confidence):
 st.title("🧠 Brain MRI Classification & Segmentation")
 st.write("Upload a brain MRI scan to classify tumor type and segment tumor region.")
 
-uploaded_file = st.file_uploader("Upload MRI Image", type=["png", "jpg", "jpeg"])
+uploaded_file = st.file_uploader("Upload MRI Image", type=["png", "jpg", "jpeg", 'tif'])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
     preprocessed = preprocess_image(image)
 
     raw_pred = segmenter.predict(preprocessed)[0]
-    overlay_img = overlay_mask(image, raw_pred, threshold=0.65, alpha=0.5)
+    overlay_img = overlay_mask(image, raw_pred, threshold=0.6, alpha=0.5)
 
     st.subheader("Segmentation Result")
     st.image(overlay_img, caption="Overlay on Original MRI", use_container_width=True)
