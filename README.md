@@ -17,7 +17,3 @@ This project provides an **end-to-end medical imaging pipeline** for analyzing b
 - **Medical Report Generation**: Automatically generates a clinician-style report from results using Gemini.  
 - **Interactive App**: Streamlit-based interface for uploading MRIs, visualizing masks, classification results, and reports.  
 
----
-
-## 🏗️ Project Structure  
-
